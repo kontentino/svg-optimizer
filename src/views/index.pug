@@ -1,17 +1,17 @@
 extends layout
 
 block content
-    main
-        h1= title
+    main.space-y-10
+        h1.text-3xl= title
         section
-            p
+            p.text-xl
                 | This tool is optimizing svg file according to&nbsp;
-                a(href='https://github.com/feathericons/feather' target='_blank') react-feather
+                a(href='https://github.com/feathericons/feather' target='_blank' class='text-blue-600') react-feather
                 |  svg icon standards
 
-            p
+            p.text-l.pt-4
                 strong These are:
-                ul
+                ul.list-inside.list-disc.pl-4.pt-4.space-y-1
                     li Not using fill colors
                     li Stroke color as 'currentColor' (it allows coloring via css "color" attribute)
                     li Styled in 24x24 grid
@@ -22,24 +22,22 @@ block content
                     li Using 'http://www.w3.org/2000/svg' standard
                     li Using ViewBox '0 0 24 24'
 
-        form(action='/optimize' method='post', enctype="multipart/form-data")
-            h3 Optimize SVG
-            label(for='file-input') Select SVG file and click optimize
-            div.form-field
-                input(
-                    type='file'
-                    accept='.svg'
-                    name='icon'
-                    required
-                    id='file-input'
-                )
-            div.form-field
-                button(type='submit') Optimize
-
-
         section
-            h4 How do i now that image is suitable for using as feather-icon ?
-            ul
+            form(action='/optimize' method='post', enctype="multipart/form-data", class='bg-green-50 p-8 rounded-lg')
+                h3.text-xl.mb-4 Optimize SVG
+                label(for='file-input') Select SVG file and click optimize
+                div.mt-4.flex.items-center
+                    input(
+                        type='file'
+                        accept='.svg'
+                        name='icon'
+                        required
+                        id='file-input'
+                    )
+                    button.bg-green-500.p-2.text-white.rounded-md.ml-auto(type='submit') Optimize
+        section
+            h4.text-xl How do i now that image is suitable for using as feather-icon ?
+            ul.list-inside.list-disc.pl-4.pt-4.space-y-1
                 li Icon is not cut from sides
                 li Has no parts missing (Not using fill color)
                 li Has nice stroke width of lines (sometimes bit different than original)
