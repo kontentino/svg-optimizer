@@ -1,15 +1,52 @@
 extends layout
 
 block content
-    h1= title
-    p Upload Svg icon
-    form(action='/optimize' method='post', enctype="multipart/form-data")
-        div.form-field
-            input(
-                type='file'
-                accept='.svg'
-                name='icon'
-                required
-            )
-        div.form-field
-            button(type='submit') Optimize
+    main
+        h1= title
+        section
+            p
+                | This tool is optimizing svg file according to&nbsp;
+                a(href='https://github.com/feathericons/feather' target='_blank') react-feather
+                |  svg icon standards
+
+            p
+                strong These are:
+                ul
+                    li Not using fill colors
+                    li Stroke color as 'currentColor' (it allows coloring via css "color" attribute)
+                    li Styled in 24x24 grid
+                    li Stroke width set on 2
+                    li Stroke linecap set on 'round'
+                    li Stroke linejoin set on 'round'
+                    li Nicely formatted html
+                    li Using 'http://www.w3.org/2000/svg' standard
+                    li Using ViewBox '0 0 24 24'
+
+        form(action='/optimize' method='post', enctype="multipart/form-data")
+            h3 Optimize SVG
+            label(for='file-input') Select SVG file and click optimize
+            div.form-field
+                input(
+                    type='file'
+                    accept='.svg'
+                    name='icon'
+                    required
+                    id='file-input'
+                )
+            div.form-field
+                button(type='submit') Optimize
+
+
+        section
+            h4 How do i now that image is suitable for using as feather-icon ?
+            ul
+                li Icon is
+                    strong
+                        |  not
+                    |  cut from sides
+                li Has
+                    strong
+                        |  no
+                    |  parts missing (Not using fill color)
+                li Has nice stroke width of lines (sometimes bit different than original)
+

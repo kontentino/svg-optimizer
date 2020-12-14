@@ -1,6 +1,9 @@
 body {
   padding: 50px;
-  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  font: 16px Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 a {
@@ -9,4 +12,8 @@ a {
 
 .form-field {
   margin: 10px 0;
+}
+
+section {
+  margin: 50px 0;
 }
