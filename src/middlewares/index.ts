@@ -1,33 +1,33 @@
-import multer from "multer";
-import path from "path";
+import multer from 'multer'
+import path from 'path'
 
 export const cors = () => (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT')
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization')
   if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
+    res.sendStatus(200)
   } else {
-    next();
+    next()
   }
 }
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads');
+    cb(null, 'uploads')
   },
   filename: (req, file, cb) => {
-    console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
+    console.log(file)
+    cb(null, Date.now() + path.extname(file.originalname))
   },
-});
+})
 const fileFilter = (req, file, cb) => {
-
   if (file.mimetype == 'image/svg+xml') {
-    cb(null, true);
+    cb(null, true)
   } else {
-    cb(null, false);
+    cb(null, false)
   }
 }
 export const upload = multer({
-  storage: storage, fileFilter: fileFilter,
-});
+  storage: storage,
+  fileFilter: fileFilter,
+})
