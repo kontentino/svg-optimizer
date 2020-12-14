@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1= title
+    p Upload Svg icon
+    form(action='/optimize' method='post', enctype="multipart/form-data")
+        div.form-field
+            input(
+                type='file'
+                accept='.svg'
+                name='icon'
+                required
+            )
+        div.form-field
+            button(type='submit') Optimize
