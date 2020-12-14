@@ -21,7 +21,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start:prod": "npm run build && node dist/index.js",
-    "build": "rm -rf dist && tsc && cp -r src/views dist/views && cp -r src/public dist/public",
+    "build": "rm -rf dist && rm -rf uploads && mkdir uploads && tsc && cp -r src/views dist/views && cp -r src/public dist/public",
     "lint": "eslint . --ext .ts"
   }
 }
