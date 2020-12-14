@@ -1,7 +1,6 @@
 import express from 'express'
 import path from 'path'
 import env from './env'
-import { cors } from './middlewares'
 import baseRouter from './router'
 
 const app = express()
@@ -12,7 +11,6 @@ app.set('view engine', 'pug')
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
-app.use(cors())
 
 app.use(baseRouter)
 
