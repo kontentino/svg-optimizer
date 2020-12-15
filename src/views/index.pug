@@ -39,6 +39,9 @@ block content
                         type='submit'
                         class='bg-blue-500 p-2 text-white rounded-md ml-auto shadow-md hover:bg-blue-600'
                     ) Optimize
+                if error && error.message
+                    div.bg-red-300.p-2.rounded-lg.mt-4
+                        | #{error.message}
         section
             h4.text-xl How do I now that image is suitable for using as
                 code.text-lg   feather-icon
