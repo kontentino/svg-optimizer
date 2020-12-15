@@ -5,5 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     meta(name='viewport' content="width=device-width, initial-scale=1.0")
 
-  body.flex.justify-center.m-8
+  body.bg-gray-50
+    include  navigation.pug
     block content
+    include footer.pug

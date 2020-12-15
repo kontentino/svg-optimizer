@@ -1,12 +1,12 @@
 extends layout
 
 block content
-    main.space-y-10
-        h1.text-3xl= title
+    main.mx-auto.max-w-screen-lg.space-y-10.bg-white.p-12.rounded-lg.mt-24.shadow-sm
         section
             p.text-xl
                 | This tool is optimizing svg file according to&nbsp;
-                a(href='https://github.com/feathericons/feather' target='_blank' class='text-blue-600') react-feather
+                a(href='https://github.com/feathericons/feather' target='_blank' class='text-blue-600')
+                    code.text-lg react-feather
                 |  svg icon standards
 
             p.text-l.pt-4
@@ -23,9 +23,10 @@ block content
                     li Using ViewBox '0 0 24 24'
 
         section
-            form(action='/optimize' method='post', enctype="multipart/form-data", class='bg-green-50 p-8 rounded-lg')
+            form(action='/optimize' method='post', enctype="multipart/form-data", class='bg-blue-50 p-8 rounded-lg')
                 h3.text-xl.mb-4 Optimize SVG
-                label(for='file-input') Select SVG file and click optimize
+                label(for='file-input') Select file and click optimize
+                    em  (only '.svg' allowed files)
                 div.mt-4.flex.items-center
                     input(
                         type='file'
@@ -34,9 +35,14 @@ block content
                         required
                         id='file-input'
                     )
-                    button.bg-green-500.p-2.text-white.rounded-md.ml-auto(type='submit') Optimize
+                    button(
+                        type='submit'
+                        class='bg-blue-500 p-2 text-white rounded-md ml-auto shadow-md hover:bg-blue-600'
+                    ) Optimize
         section
-            h4.text-xl How do i now that image is suitable for using as feather-icon ?
+            h4.text-xl How do I now that image is suitable for using as
+                code.text-lg   feather-icon
+                | ?
             ul.list-inside.list-disc.pl-4.pt-4.space-y-1
                 li Icon is not cut from sides
                 li Has no parts missing (Not using fill color)
