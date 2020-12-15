@@ -16,7 +16,7 @@ baseRouter.post(
     const svgString = fs.readFileSync(req.file.path).toString()
     const optimizedSvgString = await processSvg(svgString)
 
-    const newFileName = req.file.path.replace('.svg', 'optimized.svg')
+    const newFileName = req.file.path.replace('.svg', '-optimized.svg')
 
     fs.writeFileSync(newFileName, optimizedSvgString)
 
