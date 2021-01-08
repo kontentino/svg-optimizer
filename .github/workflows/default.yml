@@ -1,0 +1,33 @@
+name: Default
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  push:
+    name: Push container
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: docker build -t kontentino/svg-optimizer .
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: Push image to Digital Ocean Container Registry
+      run: |
+        VERSION=${GITHUB_REF#"refs/tags/"}
+        IMAGE_NAME=registry.digitalocean.com/kontentino/svg-optimizer
+        
+        echo $VERSION
+        echo $IMAGE_NAME
+        
+        docker tag kontentino/svg-optimizer $IMAGE_NAME:$VERSION
+        
+        doctl auth init
+        doctl registry login
+        
+        docker push $IMAGE_NAME:$VERSION
