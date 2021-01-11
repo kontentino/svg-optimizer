@@ -51,7 +51,7 @@ jobs:
       run: doctl kubernetes cluster kubeconfig save e3cae6b2-d53b-4231-a37f-d8f1f7dae057
     - name: Deploy new version
       run: |
-        kubectl rollout restart deployment/svg-optimizer-deployment
+        kubectl rollout restart deployment/svg-optimizer-deployment --namespace="tools"
   push_version:
     name: Push container with release version
     if: github.event_name == 'release'
