@@ -5,7 +5,8 @@ on:
     branches:
       - master
   release:
-    types: [published]
+    types: 
+      - published
 
 env:
   PROJECT_NAME: svg-optimizer
@@ -28,14 +29,13 @@ jobs:
     - name: Push image to Digital Ocean Container Registry
       run: |
         VERSION=latest
-        IMAGE_NAME=registry.digitalocean.com/kontentino/svg-optimizer
         
         docker tag $ORGANIZATION/$PROJECT_NAME registry.digitalocean.com/$ORGANIZATION/$PROJECT_NAME:$VERSION
         
         doctl auth init
         doctl registry login
         
-        docker push $IMAGE_NAME:$VERSION
+        docker push registry.digitalocean.com/$ORGANIZATION/$PROJECT_NAME:$VERSION
   deploy_dev:
     needs: push_latest
     name: Deploy to dev
